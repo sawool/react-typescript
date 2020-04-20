@@ -1,0 +1,52 @@
+html,
+body,
+#root {
+  /* display: flex; */
+  height: 100%;
+  width: 100%;
+}
+
+.requiredText {
+  color: #ff6666;
+}
+
+.signCommon {
+  display: flex;
+  text-align: center;
+  padding: 0px 15px 50px 15px;
+  margin: auto;
+  height: 100%;
+}
+
+.signCommon .form {
+  width: 100%;
+  max-width: 330px;
+  margin: auto;
+}
+
+.signCommon .form .username {
+  text-align: left;
+  padding: 0px;
+}
+
+.signCommon .form .email {
+  text-align: left;
+  padding: 0px;
+}
+
+.signCommon .form .password {
+  text-align: left;
+  padding: 0px;
+}
+
+.signCommon .form .button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.signCommon .form .label {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 0.5rem;
+  width: 100%;
+}
