@@ -7,4 +7,5 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 
+// 루트 리듀서 타입선언
 export type RootStateType = ReturnType<typeof rootReducer>;

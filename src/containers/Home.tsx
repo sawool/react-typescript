@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { valid } from '../modules/authentication';
+import { authValidAsync } from '../modules/authentication';
 import { RootStateType } from '../modules';
 
 function Home() {
@@ -15,7 +15,7 @@ function Home() {
   }, [message]);
 
   const handleClick = async () => {
-    dispatch(valid());
+    dispatch(authValidAsync.request());
   };
 
   return (

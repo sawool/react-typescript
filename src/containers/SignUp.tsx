@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { RootStateType } from '../modules';
+import { authSignupAsync } from '../modules/authentication';
 import { SignUpRequest } from '../services/authentication';
-import { signup } from '../modules/authentication';
 import SignCommon from '../components/SignCommon';
 
 type SignUpComponentProps = RouteComponentProps<any> & {};
@@ -15,7 +15,13 @@ function SignUp({ history }: SignUpComponentProps) {
   const dispatch = useDispatch();
 
   const handleJoin = (data: SignUpRequest) => {
-    dispatch(signup(data.email, data.username, data.password));
+    dispatch(
+      authSignupAsync.request({
+        email: data.email,
+        username: data.username,
+        password: data.password,
+      })
+    );
   };
 
   useEffect(() => {
