@@ -1,14 +1,21 @@
 import React, { useEffect } from 'react';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { authValidAsync } from '../modules/authentication';
 import { RootStateType } from '../modules';
 
-function Home() {
-  const { message } = useSelector(
+type HomeComponentProps = RouteComponentProps<any> & {};
+
+function Home({ history }: HomeComponentProps) {
+  const { status, message } = useSelector(
     (state: RootStateType) => state.authentication.valid
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status === 'FAILURE') history.push('/signin');
+  }, [history, status]);
 
   useEffect(() => {
     if (message) alert(message);
@@ -26,4 +33,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withRouter(Home);

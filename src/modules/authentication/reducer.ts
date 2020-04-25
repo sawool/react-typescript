@@ -11,24 +11,13 @@ import {
   AUTH_VALID_SUCCESS,
   AUTH_VALID_FAILURE,
 } from './actions';
+import { authAsyncState } from '../../lib/reducerUtils';
 
 // 초기 상태
 const initialState: AuthenticationState = {
-  signin: {
-    status: 'INIT',
-    error: '',
-    message: '',
-  },
-  signup: {
-    status: 'INIT',
-    error: '',
-    message: '',
-  },
-  valid: {
-    status: 'INIT',
-    error: '',
-    message: '',
-  },
+  signin: authAsyncState.initial(),
+  signup: authAsyncState.initial(),
+  valid: authAsyncState.initial(),
 };
 
 const authentication = createReducer<AuthenticationState, AuthenticationAction>(
@@ -36,75 +25,39 @@ const authentication = createReducer<AuthenticationState, AuthenticationAction>(
   {
     [AUTH_SIGNIN]: (state) => ({
       ...state,
-      signin: {
-        status: 'WAITING',
-        error: '',
-        message: '',
-      },
+      signin: authAsyncState.request(),
     }),
     [AUTH_SIGNIN_SUCCESS]: (state) => ({
       ...state,
-      signin: {
-        status: 'SUCCESS',
-        error: '',
-        message: '',
-      },
+      signin: authAsyncState.success(),
     }),
     [AUTH_SIGNIN_FAILURE]: (state, action) => ({
       ...state,
-      signin: {
-        status: 'FAILURE',
-        error: action.payload.message,
-        message: action.payload.message,
-      },
+      signin: authAsyncState.failure(action.payload.message),
     }),
     [AUTH_SIGNUP]: (state) => ({
       ...state,
-      signup: {
-        status: 'WAITING',
-        error: '',
-        message: '',
-      },
+      signup: authAsyncState.request(),
     }),
     [AUTH_SIGNUP_SUCCESS]: (state) => ({
       ...state,
-      signup: {
-        status: 'SUCCESS',
-        error: '',
-        message: '',
-      },
+      signup: authAsyncState.success(),
     }),
     [AUTH_SIGNUP_FAILURE]: (state, action) => ({
       ...state,
-      signup: {
-        status: 'FAILURE',
-        error: action.payload.message,
-        message: action.payload.message,
-      },
+      signup: authAsyncState.failure(action.payload.message),
     }),
     [AUTH_VALID]: (state) => ({
       ...state,
-      valid: {
-        status: 'WAITING',
-        error: '',
-        message: '',
-      },
+      valid: authAsyncState.request(),
     }),
     [AUTH_VALID_SUCCESS]: (state) => ({
       ...state,
-      valid: {
-        status: 'SUCCESS',
-        error: '',
-        message: '',
-      },
+      valid: authAsyncState.success(),
     }),
     [AUTH_VALID_FAILURE]: (state, action) => ({
       ...state,
-      valid: {
-        status: 'FAILURE',
-        error: action.payload.message,
-        message: action.payload.message,
-      },
+      valid: authAsyncState.failure(action.payload.message),
     }),
   }
 );

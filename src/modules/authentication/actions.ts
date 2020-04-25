@@ -1,15 +1,15 @@
 import { createAsyncAction } from 'typesafe-actions';
 
 // Actions
-export const AUTH_SIGNIN = 'authenticatoin/AUTH_SIGNIN';
-export const AUTH_SIGNIN_SUCCESS = 'authenticatoin/AUTH_SIGNIN_SUCCESS';
-export const AUTH_SIGNIN_FAILURE = 'authenticatoin/AUTH_SIGNIN_FAILURE';
-export const AUTH_SIGNUP = 'authenticatoin/AUTH_SIGNUP';
-export const AUTH_SIGNUP_SUCCESS = 'authenticatoin/AUTH_SIGNUP_SUCCESS';
-export const AUTH_SIGNUP_FAILURE = 'authenticatoin/AUTH_SIGNUP_FAILURE';
-export const AUTH_VALID = 'authenticatoin/AUTH_VALID';
-export const AUTH_VALID_SUCCESS = 'authenticatoin/AUTH_VALID_SUCCESS';
-export const AUTH_VALID_FAILURE = 'authenticatoin/AUTH_VALID_FAILURE';
+export const AUTH_SIGNIN = 'auth/SIGNIN';
+export const AUTH_SIGNIN_SUCCESS = 'auth/SIGNIN_SUCCESS';
+export const AUTH_SIGNIN_FAILURE = 'auth/SIGNIN_FAILURE';
+export const AUTH_SIGNUP = 'auth/SIGNUP';
+export const AUTH_SIGNUP_SUCCESS = 'auth/SIGNUP_SUCCESS';
+export const AUTH_SIGNUP_FAILURE = 'auth/SIGNUP_FAILURE';
+export const AUTH_VALID = 'auth/VALID';
+export const AUTH_VALID_SUCCESS = 'auth/VALID_SUCCESS';
+export const AUTH_VALID_FAILURE = 'auth/VALID_FAILURE';
 
 // Action Creator
 export const authSigninAsync = createAsyncAction(
