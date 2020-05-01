@@ -11,7 +11,7 @@ export type SignUpRequest = SignRequest & {
 
 export type SignInRequest = SignRequest & {};
 
-export type SignInReponse = {
+export type UserInfo = {
   email: string;
   username: string;
 };
@@ -20,27 +20,47 @@ export async function signupRequest(payload: SignUpRequest) {
   console.log('axios - signupRequest');
   console.log(payload);
 
-  return await axios.post<SignUpRequest>('api/user/signup', payload);
+  await axios.post('api/user/signup', payload);
+
+  return true;
 }
 
 export async function signinRequest(payload: SignInRequest) {
   console.log('axios - signinRequest');
   console.log(payload);
 
-  return await axios.post<SignInRequest>('api//user/signin', payload);
+  const response = await axios.post<UserInfo>('api//user/signin', payload);
+  return response.data;
 }
 
 export async function isValidRequest() {
   console.log('axios - isValidRequest');
 
   const jwt = getToken();
-  return await axios.post(
+  await axios.post(
     'api//user/current',
     {},
     {
       headers: { Authorization: `Bearer ${jwt}` },
     }
   );
+
+  return true;
+}
+
+export async function signoutRequest() {
+  console.log('axios - signoutRequest');
+
+  const jwt = getToken();
+  await axios.post(
+    'api//user/signout',
+    {},
+    {
+      headers: { Authorization: `Bearer ${jwt}` },
+    }
+  );
+
+  return true;
 }
 
 function getToken() {

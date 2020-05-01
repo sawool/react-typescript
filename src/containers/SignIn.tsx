@@ -9,16 +9,16 @@ import SignCommon from '../components/SignCommon';
 type SignInComponentProps = RouteComponentProps<any> & {};
 
 function SignIn({ history }: SignInComponentProps) {
-  const { status, message } = useSelector(
-    (state: RootStateType) => state.authentication.signin
+  const { loading, data, error } = useSelector(
+    (state: RootStateType) => state.authentication.auth
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status === 'SUCCESS') {
+    if (loading === false && data) {
       history.push('/home');
     }
-  }, [history, status]);
+  }, [data, history, loading]);
 
   const handleLogin = (data: SignInRequest) => {
     console.log(data);
@@ -32,7 +32,7 @@ function SignIn({ history }: SignInComponentProps) {
       <SignCommon
         isSignUp={false}
         handleLogin={handleLogin}
-        errorMessage={message}
+        errorMessage={error?.response?.data.message}
       />
     </>
   );

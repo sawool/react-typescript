@@ -1,34 +1,8 @@
-// 로그관련인 처리용
-export type AuthAsyncState = {
-  status: string;
-  error?: string;
-  message: string;
-};
+import { getType } from 'typesafe-actions';
+import { AnyAction } from 'redux';
+import { AsyncActionGroup } from './types';
 
-export const authAsyncState = {
-  initial: (): AuthAsyncState => ({
-    status: 'INITIAL',
-    error: '',
-    message: '',
-  }),
-  request: (): AuthAsyncState => ({
-    status: 'WAITING',
-    error: '',
-    message: '',
-  }),
-  success: (): AuthAsyncState => ({
-    status: 'SUCCESS',
-    error: '',
-    message: '',
-  }),
-  failure: (message: string, error?: string): AuthAsyncState => ({
-    status: 'FAILURE',
-    error,
-    message,
-  }),
-};
-
-// 일반 async request 용 (추후 사용할 예정)
+// async request 용 (추후 사용할 예정)
 export type AsyncState<T, E = any> = {
   loading: boolean;
   data: T | null;
@@ -52,8 +26,44 @@ export const asyncState = {
     error: null,
   }),
   failure: <T, E>(error: E): AsyncState<T, E> => ({
-    loading: true,
+    loading: false,
     data: null,
     error: error,
   }),
 };
+
+type AnyAsyncActionCreator = AsyncActionGroup<any, any, any, any, any, any>;
+
+export function createAsyncReducer<
+  S,
+  AC extends AnyAsyncActionCreator,
+  K extends keyof S
+>(asyncActionCreator: AC, key: K) {
+  return (state: S, action: AnyAction) => {
+    const [request, success, failure] = [
+      asyncActionCreator.request,
+      asyncActionCreator.success,
+      asyncActionCreator.failure,
+    ].map(getType);
+
+    switch (action.type) {
+      case request:
+        return {
+          ...state,
+          [key]: asyncState.request(),
+        };
+      case success:
+        return {
+          ...state,
+          [key]: asyncState.success(action.payload),
+        };
+      case failure:
+        return {
+          ...state,
+          [key]: asyncState.failure(action.payload),
+        };
+      default:
+        return state;
+    }
+  };
+}

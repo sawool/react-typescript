@@ -1,11 +1,11 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
-import { AuthAsyncState } from '../../lib/reducerUtils';
+import { AsyncState } from '../../lib/reducerUtils';
+import { UserInfo } from '../../services/authentication';
+import { AxiosError } from 'axios';
 
 export type AuthenticationAction = ActionType<typeof actions>;
 
 export type AuthenticationState = {
-  signin: AuthAsyncState;
-  signup: AuthAsyncState;
-  valid: AuthAsyncState;
+  auth: AsyncState<UserInfo, AxiosError>;
 };

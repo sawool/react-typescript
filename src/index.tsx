@@ -12,15 +12,22 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './modules';
 import rootSaga from './sagas/sagas';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
+
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 // mount it on the store
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+);
 // run the saga
 sagaMiddleware.run(rootSaga);
 

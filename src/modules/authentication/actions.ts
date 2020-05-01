@@ -1,39 +1,24 @@
 import { createAsyncAction } from 'typesafe-actions';
+import { AxiosError } from 'axios';
+import { UserInfo } from '../../services/authentication';
 
 // Actions
 export const AUTH_SIGNIN = 'auth/SIGNIN';
 export const AUTH_SIGNIN_SUCCESS = 'auth/SIGNIN_SUCCESS';
 export const AUTH_SIGNIN_FAILURE = 'auth/SIGNIN_FAILURE';
-export const AUTH_SIGNUP = 'auth/SIGNUP';
-export const AUTH_SIGNUP_SUCCESS = 'auth/SIGNUP_SUCCESS';
-export const AUTH_SIGNUP_FAILURE = 'auth/SIGNUP_FAILURE';
-export const AUTH_VALID = 'auth/VALID';
-export const AUTH_VALID_SUCCESS = 'auth/VALID_SUCCESS';
-export const AUTH_VALID_FAILURE = 'auth/VALID_FAILURE';
+export const AUTH_SIGNOUT = 'auth/SIGNOUT';
+export const AUTH_SIGNOUT_SUCCESS = 'auth/SIGNOUT_SUCCESS';
+export const AUTH_SIGNOUT_FAILURE = 'auth/SIGNOUT_FAILURE';
 
 // Action Creator
 export const authSigninAsync = createAsyncAction(
   AUTH_SIGNIN,
   AUTH_SIGNIN_SUCCESS,
   AUTH_SIGNIN_FAILURE
-)<
-  { email: string; password: string },
-  undefined,
-  { error?: string; message: string }
->();
+)<{ email: string; password: string }, UserInfo, AxiosError>();
 
-export const authSignupAsync = createAsyncAction(
-  AUTH_SIGNUP,
-  AUTH_SIGNUP_SUCCESS,
-  AUTH_SIGNUP_FAILURE
-)<
-  { email: string; username: string; password: string },
-  undefined,
-  { error?: string; message: string }
->();
-
-export const authValidAsync = createAsyncAction(
-  AUTH_VALID,
-  AUTH_VALID_SUCCESS,
-  AUTH_VALID_FAILURE
-)<undefined, undefined, { error?: string; message: string }>();
+export const authSignoutAsync = createAsyncAction(
+  AUTH_SIGNOUT,
+  AUTH_SIGNOUT_SUCCESS,
+  AUTH_SIGNOUT_FAILURE
+)<undefined, undefined, AxiosError>();

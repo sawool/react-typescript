@@ -1,34 +1,22 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { RootStateType } from '../modules';
-import { authSignupAsync } from '../modules/authentication';
 import { SignUpRequest } from '../services/authentication';
+import Api from '../services';
 import SignCommon from '../components/SignCommon';
 
 type SignUpComponentProps = RouteComponentProps<any> & {};
 
 function SignUp({ history }: SignUpComponentProps) {
-  const { status, message } = useSelector(
-    (state: RootStateType) => state.authentication.signup
-  );
-  const dispatch = useDispatch();
+  const [message, setMessage] = useState('');
 
   const handleJoin = (data: SignUpRequest) => {
-    dispatch(
-      authSignupAsync.request({
-        email: data.email,
-        username: data.username,
-        password: data.password,
-      })
-    );
-  };
-
-  useEffect(() => {
-    if (status === 'SUCCESS') {
+    try {
+      Api.signupRequest(data);
       history.push('/signin');
+    } catch (error) {
+      setMessage(error?.response?.data.message);
     }
-  }, [history, status]);
+  };
 
   return (
     <SignCommon
