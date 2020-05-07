@@ -3,6 +3,7 @@ import Home from './containers/Home';
 import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import Header from './components/Header';
+import Material from './components/Material';
 import { Route } from 'react-router-dom';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
       <Route path="/header" component={Header} />
+      <Route path="/material" component={Material} />
     </>
   );
 }
