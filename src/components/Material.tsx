@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Material.css';
 
 type MaterialForm = {
-  location: string;
-  kinds: string;
-  kindsDetail: string;
-  weight: number;
-  num: number;
+  // purchaseDate: Date;
+  // location: string;
+  // kinds: string;
+  // kindsDetail: string;
+  // weight: number;
+  // num: number;
 };
 
 function Material() {
+  type PurchaseDate = Date | null;
+  const [purchaseDate, setPurchaseDate] = useState<PurchaseDate>(new Date());
+
+  const FormControlDate = ({ value, onClick }: any) => (
+    <Form.Control type="input" value={value} onClick={onClick}></Form.Control>
+  );
+
   return (
     <Form className="materialForm pl-3 mt-3">
+      <Form.Group as={Row} className="date" controlId="formDate">
+        <Form.Label column sm={2}>
+          구입일
+        </Form.Label>
+        <Col sm={2}>
+          <DatePicker
+            dateFormat="yyyy.MM.dd"
+            selected={purchaseDate}
+            onChange={(date) => setPurchaseDate(date)}
+            customInput={<FormControlDate />}
+          ></DatePicker>
+        </Col>
+      </Form.Group>
       <Form.Group as={Row} className="location" controlId="formLocation">
         <Form.Label column sm={2}>
           보관위치
         </Form.Label>
         <Col sm={2}>
-          <Form.Control as="select" custom>
+          <Form.Control as="select">
             <option value={1}>냉동실</option>
             <option value={2}>냉장고</option>
             <option value={3}>실온</option>
@@ -30,7 +53,7 @@ function Material() {
           종류
         </Form.Label>
         <Col sm={2}>
-          <Form.Control as="select" custom>
+          <Form.Control as="select">
             <option value={1}>고기</option>
             <option value={2}>생선</option>
             <option value={3}>야채</option>
