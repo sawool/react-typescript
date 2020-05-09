@@ -4,6 +4,7 @@ import SignUp from './containers/SignUp';
 import SignIn from './containers/SignIn';
 import Header from './components/Header';
 import Material from './components/Material';
+import SideMenu from './components/SideMenu';
 import { Route } from 'react-router-dom';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path="/signin" component={SignIn} />
       <Route path="/header" component={Header} />
       <Route path="/material" component={Material} />
+      <Route path="/sideMenu" component={SideMenu} />
     </>
   );
 }
