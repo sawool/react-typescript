@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 function SideMenu() {
   return (
     <Nav className="flex-column">
-      <Nav.Link>
-        <Link to="/material">식재료</Link>
+      <Nav.Link as={Link} to="/material">
+        식재료
       </Nav.Link>
     </Nav>
   );
