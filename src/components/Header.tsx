@@ -5,8 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import './Header.css';
 
 type HeaderProps = RouteComponentProps<any> & {
-  isSignin: boolean;
-  username: string;
+  isSignin?: boolean;
+  username?: string;
 };
 
 function Header({ isSignin, username, history }: HeaderProps) {
@@ -30,5 +30,10 @@ function Header({ isSignin, username, history }: HeaderProps) {
     </>
   );
 }
+
+Header.defaultProps = {
+  isSignin: false,
+  username: '',
+};
 
 export default withRouter(Header);
