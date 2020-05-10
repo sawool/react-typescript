@@ -1,0 +1,11 @@
+.app-container {
+  height: 100%;
+}
+
+.app-container .app-container-main {
+  height: 100%;
+}
+
+.app-container .app-container-main .app-container-main-row {
+  height: 100%;
+}

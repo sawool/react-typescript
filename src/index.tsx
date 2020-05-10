@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Router
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -34,7 +34,7 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <Route path="/" component={App} />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
