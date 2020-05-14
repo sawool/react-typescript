@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import React, { useState, useRef } from 'react';
+import { Form, Row, Col, Button, FormControl } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Material.css';
 
 type MaterialForm = {
-  // purchaseDate: Date;
-  // location: string;
-  // kinds: string;
-  // kindsDetail: string;
-  // weight: number;
-  // num: number;
+  purchaseDate: Date;
+  location: string;
+  kinds: string;
+  kindsDetail: string;
+  weight: number;
+  num: number;
 };
 
 function Material() {
   type PurchaseDate = Date | null;
   const [purchaseDate, setPurchaseDate] = useState<PurchaseDate>(new Date());
 
-  const FormControlDate = ({ value, onClick }: any) => (
-    <Form.Control type="input" value={value} onClick={onClick}></Form.Control>
+  const dateRef = useRef<HTMLInputElement & FormControl>(null);
+  const FormContorlDate = React.forwardRef(
+    (props: any, ref: React.Ref<HTMLInputElement & FormControl>) => (
+      <Form.Control type="input" {...props} ref={ref}></Form.Control>
+    )
   );
 
   return (
@@ -32,7 +35,7 @@ function Material() {
             dateFormat="yyyy.MM.dd"
             selected={purchaseDate}
             onChange={(date) => setPurchaseDate(date)}
-            customInput={<FormControlDate />}
+            customInput={<FormContorlDate ref={dateRef} />}
           ></DatePicker>
         </Col>
       </Form.Group>
@@ -65,7 +68,7 @@ function Material() {
         <Form.Label column sm={2}>
           상세종류
         </Form.Label>
-        <Col sm={3}>
+        <Col sm={4}>
           <Form.Control
             type="input"
             placeholder="소 등심, 돼지 안심, 삼치... 등"
@@ -99,7 +102,7 @@ function Material() {
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
-        <Col sm={{ span: 3, offset: 2 }}>
+        <Col sm={{ span: 2, offset: 2 }}>
           <Button type="submit" className="button">
             저장
           </Button>
