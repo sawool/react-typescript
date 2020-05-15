@@ -1,18 +1,24 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
+import { RootStateType } from '../modules';
 
-import Home from './containers/Home';
-import SignUp from './containers/SignUp';
-import SignIn from './containers/SignIn';
-import Header from './components/Header';
-import Material from './components/Material';
-import SideMenu from './components/SideMenu';
+import Home from './Home';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
+import Header from '../components/Header';
+import Material from '../components/Material';
+import SideMenu from '../components/SideMenu';
 import './App.css';
 
 type AppComponentProps = RouteComponentProps<any> & {};
 
 function App({ location }: AppComponentProps) {
+  const { data } = useSelector(
+    (state: RootStateType) => state.authentication.auth
+  );
+
   const re = /(signin|signup)/;
   const isAuth = re.test(location.pathname);
 
@@ -21,7 +27,7 @@ function App({ location }: AppComponentProps) {
       {isAuth ? undefined : (
         <Row>
           <Col>
-            <Header></Header>
+            <Header isSignin={data ? true : false}></Header>
           </Col>
         </Row>
       )}

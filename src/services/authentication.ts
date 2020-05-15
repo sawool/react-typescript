@@ -36,14 +36,7 @@ export async function signinRequest(payload: SignInRequest) {
 export async function isValidRequest() {
   console.log('axios - isValidRequest');
 
-  const jwt = getToken();
-  await axios.post(
-    'api//user/current',
-    {},
-    {
-      headers: { Authorization: `Bearer ${jwt}` },
-    }
-  );
+  await axios.post('api//user/current');
 
   return true;
 }
@@ -51,28 +44,7 @@ export async function isValidRequest() {
 export async function signoutRequest() {
   console.log('axios - signoutRequest');
 
-  const jwt = getToken();
-  await axios.post(
-    'api//user/signout',
-    {},
-    {
-      headers: { Authorization: `Bearer ${jwt}` },
-    }
-  );
+  await axios.post('api//user/signout');
 
   return true;
-}
-
-function getToken() {
-  let cookies = document.cookie.split(';');
-  let tokenValue = '';
-
-  cookies.forEach((cookie) => {
-    let cookieArr = cookie.trimLeft().split('=');
-    if (cookieArr[0] === 'token') {
-      tokenValue = cookieArr[1];
-    }
-  });
-
-  return tokenValue;
 }
