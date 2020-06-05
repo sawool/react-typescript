@@ -53,6 +53,7 @@ export function createAsyncReducer<
           [key]: asyncState.request(),
         };
       case success:
+        console.log(action.payload);
         return {
           ...state,
           [key]: asyncState.success(action.payload),

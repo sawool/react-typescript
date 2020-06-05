@@ -1,0 +1,22 @@
+.materialForm {
+}
+
+.materialForm .label {
+  min-width: 100px;
+}
+
+.materialForm .purchaseDate {
+  max-width: 140px;
+}
+
+.materialForm .col-sm-4 {
+  min-width: 130px;
+}
+
+.materialForm .button {
+  width: 100%;
+}
+
+.formNumber {
+  text-align: right;
+}

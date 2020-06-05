@@ -1,0 +1,30 @@
+.materialList {
+}
+
+.materialList .showEntries {
+}
+
+.materialList .form-label {
+}
+
+.materialList .tr {
+  text-align: center;
+}
+
+.materialList .tdCenter {
+  text-align: center;
+}
+
+.materialList .tdRight {
+  text-align: right;
+}
+
+.materialList .form-control {
+  display: inline-block;
+  width: auto;
+}
+
+.materialList .regBtn {
+  float: right;
+  width: 100px;
+}

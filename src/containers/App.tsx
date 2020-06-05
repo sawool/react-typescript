@@ -8,7 +8,8 @@ import Home from './Home';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import Header from '../components/Header';
-import Material from '../components/Material';
+import Material from './Material';
+import MaterialList from './MaterialList';
 import SideMenu from '../components/SideMenu';
 import './App.css';
 
@@ -44,6 +45,7 @@ function App({ location }: AppComponentProps) {
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <Route path="/material" component={Material} />
+            <Route path="/materials" component={MaterialList} />
             <Route path="/sideMenu" component={SideMenu} />
           </Col>
         </Row>

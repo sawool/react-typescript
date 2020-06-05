@@ -4,6 +4,11 @@ import {
   signoutRequest,
   isValidRequest,
 } from './authentication';
+import {
+  materialPostRequest,
+  materialGetRequest,
+  materialPutRequest,
+} from './material';
 import axios from 'axios';
 
 const Api = {
@@ -11,6 +16,9 @@ const Api = {
   signinRequest,
   isValidRequest,
   signoutRequest,
+  materialGetRequest,
+  materialPostRequest,
+  materialPutRequest,
 };
 
 // Axios 인터셉터를 이용해서 JWT 세팅
