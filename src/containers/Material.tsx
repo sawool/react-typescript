@@ -21,10 +21,12 @@ type Material = {
   quantity: string;
 };
 
-type MaterialProps = {
+type LocationState = {
   material: MaterialPayload;
   isUpdate: boolean;
-} & RouteComponentProps<{}, StaticContext, MaterialProps>;
+};
+
+type MaterialProps = RouteComponentProps<{}, StaticContext, LocationState>;
 
 type PurchaseDate = Date | null;
 
