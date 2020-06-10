@@ -29,14 +29,14 @@ export async function signinRequest(payload: SignInRequest) {
   console.log('axios - signinRequest');
   console.log(payload);
 
-  const response = await axios.post<UserInfo>('api//user/signin', payload);
+  const response = await axios.post<UserInfo>('api/user/signin', payload);
   return response.data;
 }
 
 export async function isValidRequest() {
   console.log('axios - isValidRequest');
 
-  await axios.post('api//user/current');
+  await axios.post('api/user/current');
 
   return true;
 }
@@ -44,7 +44,7 @@ export async function isValidRequest() {
 export async function signoutRequest() {
   console.log('axios - signoutRequest');
 
-  await axios.post('api//user/signout');
+  await axios.post('api/user/signout');
 
   return true;
 }

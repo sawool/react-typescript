@@ -28,7 +28,10 @@ function App({ location }: AppComponentProps) {
       {isAuth ? undefined : (
         <Row>
           <Col>
-            <Header isSignin={data ? true : false}></Header>
+            <Header
+              isSignin={data ? true : false}
+              username={data?.username}
+            ></Header>
           </Col>
         </Row>
       )}

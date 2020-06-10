@@ -16,6 +16,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './modules';
 import rootSaga from './sagas/sagas';
+import { loadState, saveState } from './lib/localStorage';
+import throttle from 'lodash/throttle';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -23,11 +25,22 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers =
   (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// localStorage 에서 state 가 존재하는 경우 가져옴
+const persistedState = loadState();
+
 // mount it on the store
 const store = createStore(
   rootReducer,
+  persistedState,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
+store.subscribe(
+  throttle(() => {
+    saveState(store.getState());
+  }, 1000)
+);
+
 // run the saga
 sagaMiddleware.run(rootSaga);
 
