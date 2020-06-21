@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, RouteComponentProps } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -19,6 +19,23 @@ function App({ location }: AppComponentProps) {
   const { data } = useSelector(
     (state: RootStateType) => state.authentication.auth
   );
+
+  // useEffect(() => {
+  //   const beforeunloadListener = (ev: BeforeUnloadEvent) => {
+  //     ev.preventDefault();
+  //     console.log(ev);
+
+  //     return false;
+  //     // console.log('delete data');
+  //     // localStorage.removeItem('state');'
+  //   };
+
+  //   window.addEventListener('beforeunload', beforeunloadListener);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', beforeunloadListener);
+  //   };
+  // }, []);
 
   const re = /(signin|signup)/;
   const isAuth = re.test(location.pathname);

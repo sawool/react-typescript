@@ -18,7 +18,7 @@ const Api = {
   signoutRequest,
   materialGetRequest,
   materialPostRequest,
-  materialPutRequest,
+  materialPutRequest,  
 };
 
 // Axios 인터셉터를 이용해서 JWT 세팅
@@ -33,7 +33,7 @@ axios.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-function getToken() {
+export function getToken() {
   let cookies = document.cookie.split(';');
   let tokenValue = '';
 

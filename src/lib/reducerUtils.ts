@@ -34,17 +34,24 @@ export const asyncState = {
 
 type AnyAsyncActionCreator = AsyncActionGroup<any, any, any, any, any, any>;
 
+// createAsyncReducer
+//  => 리듀서 생성로직은 공통으로 사용하기 위한 용도이나
+//     로직이 이상해서 reducer handelAction 에서 제대로 처리가 되지 않음
+//     일단 사용하지 않도록 봉인함..
 export function createAsyncReducer<
   S,
   AC extends AnyAsyncActionCreator,
   K extends keyof S
 >(asyncActionCreator: AC, key: K) {
   return (state: S, action: AnyAction) => {
-    const [request, success, failure] = [
-      asyncActionCreator.request,
-      asyncActionCreator.success,
-      asyncActionCreator.failure,
-    ].map(getType);
+    // const [request, success, failure] = [
+    //   asyncActionCreator.request,
+    //   asyncActionCreator.success,
+    //   asyncActionCreator.failure,
+    // ].map((actionCreator) => getType(actionCreator));
+    const request = getType(asyncActionCreator.request);
+    const success = getType(asyncActionCreator.success);
+    const failure = getType(asyncActionCreator.failure);
 
     switch (action.type) {
       case request:
@@ -53,7 +60,6 @@ export function createAsyncReducer<
           [key]: asyncState.request(),
         };
       case success:
-        console.log(action.payload);
         return {
           ...state,
           [key]: asyncState.success(action.payload),
