@@ -88,7 +88,7 @@ function Material({ location, history }: MaterialProps) {
   }, [material.quantity, material.weight]);
 
   // 저장 버튼 클릭 시
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const newMaterial = {
@@ -105,9 +105,8 @@ function Material({ location, history }: MaterialProps) {
 
     try {
       isUpdate
-        ? Api.materialPutRequest(newMaterial)
-        : Api.materialPostRequest(newMaterial);
-
+        ? await Api.materialPutRequest(newMaterial)
+        : await Api.materialPostRequest(newMaterial);
       history.push('/materials');
     } catch (error) {
       console.log(error);
