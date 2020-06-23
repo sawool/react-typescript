@@ -105,7 +105,7 @@ function Material({ location, history }: MaterialProps) {
 
     try {
       isUpdate
-        ? await Api.materialPutRequest(newMaterial)
+        ? await Api.materialPutRequest([newMaterial])
         : await Api.materialPostRequest(newMaterial);
       history.push('/materials');
     } catch (error) {

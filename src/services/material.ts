@@ -32,7 +32,7 @@ export async function materialPostRequest(
 }
 
 export async function materialPutRequest(
-  payload: MaterialPayload
+  payload: Array<MaterialPayload>
 ): Promise<boolean> {
   console.log('axios - materialPutRequest');
   console.log(payload);
