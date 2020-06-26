@@ -2,21 +2,23 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
+import ProfileDropdown from './ProfileDropdown';
 import './Header.css';
 
 type HeaderProps = RouteComponentProps<any> & {
   isSignin?: boolean;
   username?: string;
+  email?: string;
 };
 
-function Header({ isSignin, username, history }: HeaderProps) {
+function Header({ isSignin, username, email, history }: HeaderProps) {
   return (
     <>
       <Navbar bg="primary" variant="dark" className="header">
         <Navbar.Brand className="mr-auto">React with Typescript</Navbar.Brand>
         <Form className="form" inline>
           {isSignin ? (
-            <Form.Label className="username">{username}</Form.Label>
+            <ProfileDropdown username={username} email={email} />
           ) : (
             <Button
               variant="outline-light"

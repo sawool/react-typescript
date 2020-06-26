@@ -48,6 +48,7 @@ function App({ location }: AppComponentProps) {
             <Header
               isSignin={data ? true : false}
               username={data?.username}
+              email={data?.email}
             ></Header>
           </Col>
         </Row>
