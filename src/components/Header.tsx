@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import ProfileDropdown from './ProfileDropdown';
@@ -15,7 +15,9 @@ function Header({ isSignin, username, email, history }: HeaderProps) {
   return (
     <>
       <Navbar bg="primary" variant="dark" className="header">
-        <Navbar.Brand className="mr-auto">React with Typescript</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/home" className="mr-auto">
+          React with Typescript
+        </Navbar.Brand>
         <Form className="form" inline>
           {isSignin ? (
             <ProfileDropdown username={username} email={email} />
