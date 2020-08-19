@@ -11,6 +11,7 @@ import Header from '../components/Header';
 import Material from './Material';
 import MaterialList from './MaterialList';
 import SideMenu from '../components/SideMenu';
+import Menu from './menu/Menu';
 import './App.css';
 
 type AppComponentProps = RouteComponentProps<any> & {};
@@ -50,7 +51,7 @@ function App({ location }: AppComponentProps) {
             <Route path="/signin" component={SignIn} />
             <Route path="/material" component={Material} />
             <Route path="/materials" component={MaterialList} />
-            <Route path="/sideMenu" component={SideMenu} />
+            <Route path="/menu" component={Menu} />
           </Col>
         </Row>
       </main>

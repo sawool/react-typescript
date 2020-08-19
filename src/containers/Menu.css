@@ -1,0 +1,17 @@
+.menu {
+}
+
+.menu .dateBtn {
+  border-color: #ffffff;
+}
+
+.menu .datePicker {
+  border: 0px;
+  width: 105px;
+  text-align: center;
+}
+
+.menu .saveBtn {
+  float: right;
+  width: 120px;
+}
