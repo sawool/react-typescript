@@ -9,6 +9,7 @@ import {
   materialGetRequest,
   materialPutRequest,
 } from './material';
+import { menuPostRequest, menuPutRequest, menuGetRequest } from './menu';
 import axios from 'axios';
 
 const Api = {
@@ -18,7 +19,10 @@ const Api = {
   signoutRequest,
   materialGetRequest,
   materialPostRequest,
-  materialPutRequest,  
+  materialPutRequest,
+  menuPostRequest,
+  menuPutRequest,
+  menuGetRequest,
 };
 
 // Axios 인터셉터를 이용해서 JWT 세팅

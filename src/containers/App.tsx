@@ -11,7 +11,7 @@ import Header from '../components/Header';
 import Material from './Material';
 import MaterialList from './MaterialList';
 import SideMenu from '../components/SideMenu';
-import Menu from './menu/Menu';
+import Menu from './Menu';
 import './App.css';
 
 type AppComponentProps = RouteComponentProps<any> & {};

@@ -9,7 +9,7 @@ import './Material.css';
 import { MaterialPayload } from '../services/material';
 import { RootStateType } from '../modules';
 import Api from '../services';
-
+import { dateToYyyymmddString } from '../lib/dateUtils';
 type Material = {
   _id?: string;
   email?: string;
@@ -94,7 +94,7 @@ function Material({ location, history }: MaterialProps) {
     const newMaterial = {
       _id: material._id,
       email,
-      purchaseDate: pDate?.toISOString().slice(0, 10).replace(/-/g, ''),
+      purchaseDate: dateToYyyymmddString(pDate),
       location: material.locations,
       kind: material.kind,
       detail: material.detail,

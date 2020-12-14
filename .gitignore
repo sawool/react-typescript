@@ -25,3 +25,4 @@ yarn-error.log*
 react_typescript.md
 .prettierrc
 .vscode
+debug.log
