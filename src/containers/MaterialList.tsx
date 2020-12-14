@@ -13,8 +13,10 @@ function MaterialList({ history }: RouteComponentProps<any>) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMaterialAsync.request());
-  }, [dispatch]);
+    if (!data) {
+      dispatch(getMaterialAsync.request());
+    }
+  }, [data, dispatch]);
 
   const materialRows = data?.map((material, index) => (
     <tr
