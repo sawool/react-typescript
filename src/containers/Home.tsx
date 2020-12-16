@@ -27,8 +27,6 @@ function Home({ history }: HomeComponentProps) {
   return (
     <div>
       <h1>Home</h1>
-      <Button onClick={handleClick}>Check Validation</Button>
-      <Button onClick={handleSingout}>Sign Out</Button>
     </div>
   );
 }
