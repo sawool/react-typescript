@@ -12,6 +12,7 @@ import Material from './Material';
 import MaterialList from './MaterialList';
 import SideMenu from '../components/SideMenu';
 import Menu from './Menu';
+import User from "./User";
 import './App.css';
 
 type AppComponentProps = RouteComponentProps<any> & {};
@@ -22,7 +23,7 @@ function App({ location }: AppComponentProps) {
   );
 
   const re = /(signin|signup)/;
-  const isAuth = re.test(location.pathname);
+  const isAuth = re.test(location.pathname);  
 
   return (
     <Container className="app-container" fluid>
@@ -52,6 +53,7 @@ function App({ location }: AppComponentProps) {
             <Route path="/material" component={Material} />
             <Route path="/materials" component={MaterialList} />
             <Route path="/menu" component={Menu} />
+            <Route path="/user" component={User} />
           </Col>
         </Row>
       </main>

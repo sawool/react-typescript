@@ -36,9 +36,9 @@ export async function signinRequest(payload: SignInRequest) {
 export async function isValidRequest() {
   console.log('axios - isValidRequest');
 
-  await axios.post('api/user/current');
+  const response = await axios.post<UserInfo>('api/user/current');
 
-  return true;
+  return response.data;
 }
 
 export async function signoutRequest() {

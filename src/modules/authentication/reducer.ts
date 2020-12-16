@@ -76,7 +76,8 @@ const authentication = createReducer<AuthenticationState, AuthenticationAction>(
             auth: asyncState.request(),
           };
         case success:
-          return { ...state, auth: asyncState.success() };
+          console.log(asyncState.success())
+          return { ...state, auth: asyncState.success(action.payload) };
         case failure:
           return { ...state, auth: asyncState.failure(action.payload) };
         default:

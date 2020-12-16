@@ -3,6 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import './SignCommon.css';
 import { Link } from 'react-router-dom';
 import { SignInRequest, SignUpRequest } from '../services/authentication';
+import GoogleSignBtn from "./GoogleSignBtn";
 
 type SignCommonProps = {
   isSignUp: Boolean;
@@ -54,6 +55,12 @@ function SignCommon({
     e.preventDefault();
   };
 
+  async function authGoogle() {
+    console.log("authGoogle");
+
+    window.open("http://localhost:8000/api/user/auth/google", "_self");
+  }
+  
   return (
     <div className="signCommon">
       <Form className="form" onSubmit={handleSubmit}>
@@ -108,6 +115,18 @@ function SignCommon({
         <Button className="button" variant="primary" type="submit">
           {isSignUp ? 'Sing Up' : 'Sing In'}
         </Button>
+
+        <div className="or-container">
+          <div className="line-separator"></div>
+          <div className="or-label">or</div>
+          <div className="line-separator"></div>
+        </div>
+        <GoogleSignBtn
+          onClick={() => {
+            console.log("click google");
+            authGoogle();
+          }}
+        />
 
         <Form.Label className="label">
           {isSignUp ? signUpHtml : singInHtml}
